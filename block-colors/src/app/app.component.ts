@@ -23,9 +23,9 @@ export class AppComponent {
   };
 
   constructor() {
-    const rpcProvider = new ethers.providers.JsonRpcProvider('http://localhost:8545');
-    // this.infuraProvider = new ethers.providers.InfuraProvider('ropsten', this.infuraApiKey);
-    this.deployedContract = new ethers.Contract(this.contractAddress, CryptoColor.abi, rpcProvider);
+    // const rpcProvider = new ethers.providers.JsonRpcProvider('http://localhost:8545');
+    this.infuraProvider = new ethers.providers.InfuraProvider('ropsten', this.infuraApiKey);
+    this.deployedContract = new ethers.Contract(this.contractAddress, CryptoColor.abi, this.infuraProvider);
 
   }
 

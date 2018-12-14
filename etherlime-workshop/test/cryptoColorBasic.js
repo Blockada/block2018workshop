@@ -37,7 +37,7 @@ describe('Crypto color contract', () => {
 		assert.isNumber(rgbColor[2], 'The third element of the array is not number');
 	})
 
-	it('the account should have 1 token balance', async () => {
+	it('non-owner should not be able to mint', async () => {
 		const nonOwnerContractInstance = await cryptoColorContract.connect(accountThree);
 
 		await assert.revert(nonOwnerContractInstance.mint());
