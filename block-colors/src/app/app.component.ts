@@ -23,9 +23,9 @@ export class AppComponent {
   };
 
   constructor() {
-
-    this.infuraProvider = new ethers.providers.InfuraProvider('ropsten', this.infuraApiKey);
-    this.deployedContract = new ethers.Contract(this.contractAddress, CryptoColor.abi, this.infuraProvider);
+    const rpcProvider = new ethers.providers.JsonRpcProvider('http://localhost:8545');
+    // this.infuraProvider = new ethers.providers.InfuraProvider('ropsten', this.infuraApiKey);
+    this.deployedContract = new ethers.Contract(this.contractAddress, CryptoColor.abi, rpcProvider);
 
   }
 
@@ -35,7 +35,6 @@ export class AppComponent {
 
   public async getTokenColor() {
     const colors = await this.deployedContract.getColorFromId(this.tokenId);
-    console.log(colors);
     this.tokenData = {
       r: colors[0],
       g: colors[1],
